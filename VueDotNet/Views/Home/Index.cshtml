@@ -3,7 +3,7 @@
 @model HomeVM
 @{
     Layout = null;
-    var data = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.VueData), false));
+    var data = Html.Raw(VueHelper.GetVueData(Model.VueData));
 }
 
 <html>

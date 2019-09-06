@@ -2,7 +2,7 @@
 @model VueDataVM
 @{
     Layout = null;
-    var parse = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.VueData), false));
+    var parse = Html.Raw(VueHelper.GetVueData(Model.VueData));
 }
 
 <html>

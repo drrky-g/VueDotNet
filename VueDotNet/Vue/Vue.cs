@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using VueDotNet.Attributes;
     using System.Linq;
+    using System.Web;
 
     public class VueDataVM
     {
@@ -64,6 +65,14 @@
 
             return json;
 
+        }
+
+        public static string GetVueData(Dictionary<string, object> dictionary)
+        {
+            var json = JsonConvert.SerializeObject(dictionary, Formatting.None, GetSettings());
+            var htmlString = HttpUtility.JavaScriptStringEncode(json, false);
+
+            return htmlString;
         }
     }
 }

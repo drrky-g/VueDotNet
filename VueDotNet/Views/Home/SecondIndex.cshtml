@@ -3,10 +3,10 @@
 @model CombinedDataVM
 @{
     Layout = null;
-    var firstModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelOneData), false));
-    var secondModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelTwoData), false));
-    var thirdModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelThreeData), false));
-    var fourthModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelFourData), false));
+    var firstModel = Html.Raw(VueHelper.GetVueData(Model.ModelOneData));
+    var secondModel = Html.Raw(VueHelper.GetVueData(Model.ModelTwoData));
+    var thirdModel = Html.Raw(VueHelper.GetVueData(Model.ModelThreeData));
+    var fourthModel = Html.Raw(VueHelper.GetVueData(Model.ModelFourData));
 }
 
 <html>
