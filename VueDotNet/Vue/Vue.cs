@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Web;
 
+    //VueData ViewModel
     public class VueDataVM
     {
         //Best approach is to inherit this model with another VM or serialize all VM data into this VM
@@ -56,15 +57,6 @@
                 StringEscapeHandling = StringEscapeHandling.EscapeHtml
             };
             return settings;
-        }
-
-        public static string Serialize(Dictionary<string, object> vueData)
-        {
-
-            var json = JsonConvert.SerializeObject(vueData, Formatting.None, GetSettings());
-
-            return json;
-
         }
 
         public static string GetVueData(Dictionary<string, object> dictionary)
