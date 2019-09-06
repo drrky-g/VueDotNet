@@ -3,9 +3,7 @@
 @model HomeVM
 @{
     Layout = null;
-    var data = Html.Raw(
-        HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.VueData), false)
-        );
+    var data = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.VueData), false));
 }
 
 <html>
@@ -23,6 +21,10 @@
         <!-- our property with the VueData attribute 'message' in our viewmodel-->
         <div>{{message}}</div>
         <div>@Model.Message</div>
+        <ul>
+            <li>@Html.ActionLink("Example 2", "SecondIndex")</li>
+            <li>@Html.ActionLink("Example 3", "ThirdIndex")</li>
+        </ul>
     </main>
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/header.js"></script>
