@@ -1,0 +1,62 @@
+﻿@using VueDotNet.Vue;
+@using VueDotNet.ViewModels;
+@model CombinedDataVM
+@{
+    Layout = null;
+    var firstModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelOneData), false));
+    var secondModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelTwoData), false));
+    var thirdModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelThreeData), false));
+    var fourthModel = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.ModelFourData), false));
+}
+
+<html>
+<head>
+    <title>Combined Serialized Models</title>
+</head>
+<body>
+    <!--
+        notice how we use the same model 3 times,
+        so we share that VueData attribute assignment in each app
+        with different messages each time
+        -->
+    <div id="modelOne">
+        {{message}}
+    </div>
+    <div id="modelTwo">
+        {{message}}
+    </div>
+    <div id="modelThree">
+        {{message}}
+    </div>
+    <div id="modelFour">
+        {{bye}}
+    </div>
+    <script src="~/Scripts/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#modelOne',
+            data: function () {
+                return JSON.parse('@firstModel')
+            }
+        })
+        new Vue({
+            el: '#modelTwo',
+            data: function () {
+                return JSON.parse('@secondModel')
+            }
+        })
+        new Vue({
+            el: '#modelThree',
+            data: function () {
+                return JSON.parse('@thirdModel')
+            }
+        })
+        new Vue({
+            el: '#modelFour',
+            data: function () {
+                return JSON.parse('@fourthModel')
+            }
+        })
+    </script>
+</body>
+</html>

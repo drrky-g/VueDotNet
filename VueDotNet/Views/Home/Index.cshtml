@@ -1,0 +1,39 @@
+﻿@using VueDotNet.ViewModels
+@using VueDotNet.Vue
+@model HomeVM
+@{
+    Layout = null;
+    var data = Html.Raw(
+        HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.VueData), false)
+        );
+}
+
+<html>
+<head>
+    <title>Inheriting From VueDataVM</title>
+</head>
+<body>
+    <main id="vue-app">
+        <!-- the 'header-component' element is a vue component that is mounted in the script file linked at the bottom -->
+        <!-- our property with the VueData attribute 'menu' in our viewmodel-->
+        <header-component v-bind:menu-items="menu"></header-component>
+        <!-- you can still use razor code to bind data if you'd like to...-->
+        <div>{{razormessage}}</div>
+        <div>@Model.RazorMessage</div>
+        <!-- our property with the VueData attribute 'message' in our viewmodel-->
+        <div>{{message}}</div>
+        <div>@Model.Message</div>
+    </main>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/header.js"></script>
+    <script>
+        //this script binds a JSON representation of your data to the element you target with 'el'
+        new Vue({
+            el: '#vue-app',
+            data: function () {
+                return JSON.parse('@data');
+            }
+        })
+    </script>
+</body>
+</html>

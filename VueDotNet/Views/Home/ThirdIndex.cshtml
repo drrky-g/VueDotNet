@@ -1,0 +1,28 @@
+﻿@using VueDotNet.Vue;
+@model VueDataVM
+@{
+    Layout = null;
+    var parse = Html.Raw(HttpUtility.JavaScriptStringEncode(VueHelper.Serialize(Model.VueData), false));
+}
+
+<html>
+<head>
+    <title>Only VueDataVM</title>
+</head>
+<body>
+    <main id="vueData">
+        <h1>{{firstname}}</h1>
+        <h3>{{lastname}}</h3>
+        <p>{{email}}</p>
+    </main>
+    <script src="~/Scripts/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#vueData',
+            data: function () {
+                return JSON.parse('@parse')
+            }
+        })
+    </script>
+</body>
+</html>
