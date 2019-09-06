@@ -8,6 +8,7 @@
 
     public class VueDataVM
     {
+        //Best approach is to inherit this model with another VM or serialize all VM data into this VM
         public Dictionary<string, object> VueData { get; set; }
     }
 
